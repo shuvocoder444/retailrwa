@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kernax Asset Architecture | Institutionelles Protokoll</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151e2e',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'grid-pattern': `linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)`,
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020617; /* slate-950 */
+            color: #f8fafc; /* slate-50 */
+        }
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), 
+                              linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+        }
+        .matrix-quadrant {
+            transition: all 0.3s ease;
+        }
+        .matrix-quadrant:hover {
+            background-color: rgba(30, 41, 59, 0.8);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-slate-700 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 border-2 border-slate-300 flex items-center justify-center rotate-45">
+                    <div class="w-3 h-3 bg-slate-300"></div>
+                </div>
+                <span class="text-xl font-bold tracking-[0.2em] uppercase text-slate-100">Kernax</span>
+            </div>
+            
+            <div class="flex items-center gap-8">
+                <!-- Language Toggle -->
+                <div class="flex items-center gap-2 text-sm font-mono text-slate-400">
+                    <button class="hover:text-white transition-colors">EN</button>
+                    <span class="text-slate-700">|</span>
+                    <button class="text-white font-bold hover:text-white transition-colors cursor-default">DE</button>
+                </div>
+                <a href="#contact" class="hidden md:inline-flex items-center justify-center px-5 py-2 text-sm font-medium border border-slate-700 hover:bg-slate-800 transition-colors">
+                    Institutioneller Zugang
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-screen flex items-center overflow-hidden">
+        <!-- Background Grid & Glow -->
+        <div class="absolute inset-0 bg-grid opacity-30 z-0"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-slate-800/20 rounded-full blur-[120px] z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 border border-slate-700 text-xs font-mono text-slate-400 mb-8 uppercase tracking-widest bg-slate-900/50">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    IFSCA FinTech Sandbox Vorabeinsatz
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
+                    Sicherung der Datenintegrität in der Lieferkette & <br>
+                    <span class="text-slate-400">Liquidität von Sachwerten.</span>
+                </h1>
+                
+                <p class="text-xl text-slate-400 mb-12 max-w-2xl leading-relaxed border-l-2 border-slate-700 pl-6">
+                    Wir entwickeln Europas erstes doppelt besichertes Finanzprotokoll. Wir lösen das EU-CBAM Scope 3-Datendefizit und erschließen gleichzeitig die Liquidität von Real-World Assets (RWA) durch herkunftsverifizierte, mathematisch abgesicherte Instrumente.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold bg-white text-slate-950 hover:bg-slate-200 transition-colors">
+                        Institutionellen Zugang anfordern
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                    <a href="#reserve" class="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold border border-slate-700 text-white hover:bg-slate-900 transition-colors">
+                        Physische Edelsteinreserven entdecken
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Macro Problem (Quantified Dashboard) -->
+    <section class="py-24 bg-slate-900 border-y border-slate-800 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-12">I. Das Makro-Risikoumfeld (2026)</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-800 rounded-sm overflow-hidden">
+                
+                <!-- Left: CBAM Liability -->
+                <div class="bg-slate-950 p-10 lg:p-14">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-2xl font-bold text-white">Die EU-CBAM-Haftung</h3>
+                        <i data-lucide="alert-triangle" class="w-6 h-6 text-slate-500"></i>
+                    </div>
+                    
+                    <div class="mb-8 font-mono">
+                        <div class="text-5xl font-bold text-white mb-2">€75.36<span class="text-2xl text-slate-600">/tCO₂</span></div>
+                        <div class="text-sm text-slate-500 uppercase tracking-wider">Basispreis des definitiven Systems</div>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-1.5 h-1.5 bg-red-500 rounded-full shrink-0 shadow-[0_0_8px_rgba(239,68,68,0.6)]"></div>
+                            <p class="text-slate-400 text-sm leading-relaxed">Verbindliche 80%-Primärdatenregel in Kraft. Importeure ohne geprüfte Herkunftsdaten müssen mit drastischen Grenzkostenzuschlägen von bis zu 30% bis 2028 rechnen.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-1.5 h-1.5 bg-slate-600 rounded-full shrink-0"></div>
+                            <p class="text-slate-400 text-sm leading-relaxed">CFOs drohen Millionen an unvermeidbaren CO2-Grenzsteuern aufgrund undurchsichtiger globaler Rohstoff-Lieferketten.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right: RWA Paradox -->
+                <div class="bg-slate-950 p-10 lg:p-14">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-2xl font-bold text-white">Das RWA-Paradoxon</h3>
+                        <i data-lucide="arrow-down-up" class="w-6 h-6 text-slate-500"></i>
+                    </div>
+                    
+                    <div class="mb-8 font-mono">
+                        <div class="text-5xl font-bold text-slate-300 mb-2">Billionen<span class="text-2xl text-slate-600">€ Mkt</span></div>
+                        <div class="text-sm text-slate-500 uppercase tracking-wider">Prognostizierte RWA-Bewertung (2030)</div>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-1.5 h-1.5 bg-slate-600 rounded-full shrink-0"></div>
+                            <p class="text-slate-400 text-sm leading-relaxed"><strong class="text-slate-200 font-medium">Physische Vermögenswerte (Sachwerte):</strong> Hervorragender Inflationsschutz (Substanzwert), leiden jedoch unter starker Illiquidität und gebundenem Kapital.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 w-1.5 h-1.5 bg-slate-600 rounded-full shrink-0"></div>
+                            <p class="text-slate-400 text-sm leading-relaxed"><strong class="text-slate-200 font-medium">Digitale ESG-Assets:</strong> Hohe Liquidität (Emissionszertifikate), aber extreme Preisvolatilität ohne eine fundamentale Bewertungsuntergrenze.</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works (The Solution) -->
+    <section class="py-24 bg-slate-950 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-16">
+                <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-4">II. Die Kernax Architekturlösung</h2>
+                <h3 class="text-3xl font-bold text-white">Doppelt besicherte Datenpipeline</h3>
+            </div>
+
+            <!-- Pipeline Flow -->
+            <div class="relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-slate-800 -translate-y-1/2 z-0"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 relative z-10">
+                    
+                    <!-- Node 1 -->
+                    <div class="bg-slate-900 border border-slate-800 p-8 hover:border-slate-600 transition-colors group relative">
+                        <div class="w-12 h-12 bg-slate-950 border border-slate-700 rounded-none flex items-center justify-center mb-6 text-slate-400 group-hover:text-white transition-colors">
+                            <i data-lucide="box" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-3">1. Verwahrung der Vermögenswerte</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Physische Rohstoffe (Edelsteine) werden sicher geprüft und im insolvenzgeschützten Kernax Global Preservation Trust verwahrt.</p>
+                    </div>
+
+                    <!-- Node 2 -->
+                    <div class="bg-slate-900 border border-slate-800 p-8 hover:border-slate-600 transition-colors group relative">
+                        <div class="w-12 h-12 bg-slate-950 border border-slate-700 rounded-none flex items-center justify-center mb-6 text-slate-400 group-hover:text-white transition-colors">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-3">2. KI-Datenerfassung</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Die Kernax Green-Ledger AI erfasst und prüft automatisch Primäremissionsdaten genau am Ort der Rohstoffgewinnung.</p>
+                    </div>
+
+                    <!-- Node 3 -->
+                    <div class="bg-slate-900 border border-slate-800 p-8 hover:border-slate-600 transition-colors group relative">
+                        <div class="w-12 h-12 bg-slate-950 border border-slate-700 rounded-none flex items-center justify-center mb-6 text-slate-400 group-hover:text-white transition-colors">
+                            <i data-lucide="layers" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-3">3. Verbriefung</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Das Kernax HDG-Protokoll bündelt den sicheren physischen Vermögenswert über DLT mit mathematisch berechneten, stillgelegten Emissionszertifikaten.</p>
+                    </div>
+
+                    <!-- Node 4 -->
+                    <div class="bg-slate-900 border border-slate-800 p-8 border-l-4 border-l-slate-300 group relative">
+                        <div class="w-12 h-12 bg-slate-200 border border-slate-300 rounded-none flex items-center justify-center mb-6 text-slate-900">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-3">4. EU-Konformität</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Europäische CFOs erwerben einen doppelt abgesicherten Vermögenswert, der automatisch die 80%-Primärdatenregeln für das CBAM Scope 3-Reporting erfüllt.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Landscape (Intersection Matrix) -->
+    <section class="py-24 bg-slate-900 border-y border-slate-800 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div>
+                    <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-4">III. Wettbewerbstopographie</h2>
+                    <h3 class="text-3xl font-bold text-white mb-6">Strategische Positionierungsmatrix</h3>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        Der aktuelle Markt zwingt europäische Institutionen dazu, zwischen der Sicherheit einer physischen Deckung oder der Agilität der digitalen Compliance zu wählen. Kernax konstruiert die Schnittmenge. Wir erfassen die regulatorische Dringlichkeit der CO2-Verfolgung, ohne die intrinsische Substanz (Substanzwert) von harten Vermögenswerten zu opfern.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 text-sm">
+                            <div class="w-3 h-3 border border-slate-600 bg-slate-900"></div>
+                            <span class="text-slate-400">Klassische Architektur</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <div class="w-3 h-3 bg-white"></div>
+                            <span class="text-white font-medium">Kernax doppelt besicherte Architektur</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Matrix Visual -->
+                <div class="relative w-full aspect-square max-w-lg mx-auto">
+                    <!-- Axes Labels -->
+                    <div class="absolute -left-12 top-1/2 -translate-y-1/2 -rotate-90 text-xs font-mono text-slate-500 uppercase tracking-widest whitespace-nowrap">Anlagensicherheit &rarr;</div>
+                    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-mono text-slate-500 uppercase tracking-widest whitespace-nowrap">Regulatorische Integration (CBAM) &rarr;</div>
+
+                    <!-- The 2x2 Grid -->
+                    <div class="w-full h-full border-l-2 border-b-2 border-slate-700 grid grid-cols-2 grid-rows-2 gap-px bg-slate-800 p-px relative">
+                        
+                        <!-- Top Left (High Security, Low Compliance) -->
+                        <div class="bg-slate-900 p-4 flex flex-col justify-end matrix-quadrant relative">
+                            <span class="text-sm text-slate-500 font-medium leading-tight">Traditionelle Depotbanken<br>& Tresore</span>
+                        </div>
+                        
+                        <!-- Top Right (High Security, High Compliance) - KERNAX -->
+                        <div class="bg-slate-800 p-4 flex flex-col justify-end relative overflow-hidden border border-slate-500 shadow-[inset_0_0_30px_rgba(255,255,255,0.05)]">
+                            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]"></div>
+                            <span class="text-white font-bold leading-tight relative z-10 flex items-center gap-2">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                                Kernax Protokolle
+                            </span>
+                        </div>
+
+                        <!-- Bottom Left (Low Security, Low Compliance) -->
+                        <div class="bg-slate-900 p-4 flex flex-col justify-end matrix-quadrant relative">
+                            <span class="text-sm text-slate-600 font-medium leading-tight">Ungedeckte<br>Krypto-Plattformen</span>
+                        </div>
+
+                        <!-- Bottom Right (Low Security, High Compliance) -->
+                        <div class="bg-slate-900 p-4 flex flex-col justify-end matrix-quadrant relative">
+                            <span class="text-sm text-slate-500 font-medium leading-tight">Isolierte<br>CO2-Register</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Direct Asset Acquisition (The Physical Reserve) -->
+    <section id="reserve" class="py-24 bg-slate-950 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-4">IV. Direkte Ausführung</h2>
+                <h3 class="text-3xl font-bold text-white mb-6">Die physische Kernax-Reserve</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Vor der digitalen Architektur steht der physische Vermögenswert. Direkterwerb von unhitzten, unbehandelten, international zertifizierten Edelsteinen aus eigenen Minen. Verfügbar für den sofortigen institutionellen Aufkauf, unabhängig von digitalen Tokenisierungs-Rahmenwerken.
+                </p>
+            </div>
+
+            <!-- Gemstone Placeholders Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Gem 1 -->
+                <div class="aspect-[4/3] bg-gradient-to-br from-slate-800 to-slate-950 border border-slate-800 relative flex items-center justify-center group overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFFMjkzQiIgc3RvcC1vcGFjaXR5PSIwLjMiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwRjE3MkEiIHN0b3Atb3BhY2l0eT0iMC44Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBvbHlnb24gcG9pbnRzPSI1MCwxMCA5MCw0MCA3MCw5MCAzMCw5MCAxMCw0MCIgZmlsbD0idXJsKCNnKSIgc3Ryb2tlPSIjMzM0MTU1IiBzdHJva2Utd2lkdGg9IjEiIHRyYW5zZm9ybT0ic2NhbGUoMykgdHJhbnNsYXRlKDI1LCAxNSkiLz48L3N2Zz4=')] bg-center bg-no-repeat opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-slate-950/90 backdrop-blur border-t border-slate-800">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <div class="text-xs font-mono text-slate-500 mb-1">KX-R-01</div>
+                                <div class="text-sm text-white font-medium">Unbehandelter Korund (Saphir)</div>
+                            </div>
+                            <i data-lucide="shield-check" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gem 2 -->
+                <div class="aspect-[4/3] bg-gradient-to-br from-slate-800 to-slate-950 border border-slate-800 relative flex items-center justify-center group overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZzIiIHgxPSIxMDAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxRTI5M0IiIHN0b3Atb3BhY2l0eT0iMC40Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMEYxNzJBIiBzdG9wLW9wYWNpdHk9IjAuOSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwb2x5Z29uIHBvaW50cz0iNTAsMTAgOTAsNDAgNzAsOTAgMzAsOTAgMTAsNDAiIGZpbGw9InVybCgjZzIpIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMSIgdHJhbnNmb3JtPSJzY2FsZSgzLjUpIHRyYW5zbGF0ZSgyMCwgMTApIHJvdGF0ZSgxNSkiLz48L3N2Zz4=')] bg-center bg-no-repeat opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-slate-950/90 backdrop-blur border-t border-slate-800">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <div class="text-xs font-mono text-slate-500 mb-1">KX-R-04</div>
+                                <div class="text-sm text-white font-medium">Zertifizierte Beryll-Reserve</div>
+                            </div>
+                            <i data-lucide="shield-check" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gem 3 -->
+                <div class="aspect-[4/3] bg-gradient-to-br from-slate-800 to-slate-950 border border-slate-800 relative flex items-center justify-center group overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIwJSIgeTE9IjEwMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxRTI5M0IiIHN0b3Atb3BhY2l0eT0iMC4zIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMEYxNzJBIiBzdG9wLW9wYWNpdHk9IjAuOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwb2x5Z29uIHBvaW50cz0iNTAsMTAgOTAsNDAgNzAsOTAgMzAsOTAgMTAsNDAiIGZpbGw9InVybCgjZzMpIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMSIgdHJhbnNmb3JtPSJzY2FsZSgyLjgpIHRyYW5zbGF0ZSgzMCwgMjApIHJvdGF0ZSgtMTApIi8+PC9zdmc+')] bg-center bg-no-repeat opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-slate-950/90 backdrop-blur border-t border-slate-800">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <div class="text-xs font-mono text-slate-500 mb-1">KX-R-09</div>
+                                <div class="text-sm text-white font-medium">Unbehandelter Turmalin - Institutionelles Los</div>
+                            </div>
+                            <i data-lucide="shield-check" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold border border-slate-700 text-white hover:bg-slate-900 transition-colors">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i>
+                    Zertifizierungsmanifest anfordern
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate Architecture & Gated Access -->
+    <section id="contact" class="py-24 bg-slate-900 border-t border-slate-800 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Left: Corporate Info -->
+                <div>
+                    <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-4">V. Unternehmensstruktur</h2>
+                    <h3 class="text-3xl font-bold text-white mb-8">Unternehmensarchitektur</h3>
+                    
+                    <div class="space-y-6 mb-12">
+                        <div class="p-6 bg-slate-950 border border-slate-800">
+                            <div class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Dachgesellschaft (Master Holding)</div>
+                            <div class="text-lg font-bold text-white">Kernax Asset Architecture (IFSC) Pvt. Ltd.</div>
+                        </div>
+                        
+                        <div class="p-6 bg-slate-950 border border-slate-800 border-l-4 border-l-slate-600 ml-6">
+                            <div class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Treuhandarchitektur</div>
+                            <div class="text-lg font-bold text-white">Kernax Global Preservation Trust</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-slate-400">
+                            <i data-lucide="mail" class="w-5 h-5 text-slate-500"></i>
+                            <a href="mailto:info@kernax.de" class="hover:text-white transition-colors">info@kernax.de</a>
+                        </div>
+                        <div class="flex items-start gap-4 text-slate-400">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-slate-500 shrink-0 mt-1"></i>
+                            <p class="leading-relaxed">
+                                Processing Area, GIFT SEZ,<br>
+                                Gandhinagar, Gujarat 382355,<br>
+                                Indien.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Gated Form -->
+                <div class="bg-slate-950 border border-slate-800 p-8 lg:p-10 relative overflow-hidden">
+                    <!-- Deco lines -->
+                    <div class="absolute top-0 right-0 w-24 h-24 border-t border-r border-slate-700 opacity-50 m-2"></div>
+                    
+                    <h3 class="text-xl font-bold text-white mb-2 relative z-10">Zugang zum institutionellen Datenraum</h3>
+                    <p class="text-sm text-slate-400 mb-8 relative z-10">Übermitteln Sie Ihre Unternehmensdaten, um Führungsprofile, Gründerhintergründe und die Whitepaper-Architektur freizuschalten.</p>
+                    
+                    <form onsubmit="event.preventDefault(); alert('Anfrage erfolgreich übermittelt. Eine automatische Antwort wird an die angegebene geschäftliche E-Mail-Adresse gesendet.');" class="space-y-5 relative z-10">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Geschäftliche E-Mail-Adresse</label>
+                            <input type="email" required class="w-full bg-slate-900 border border-slate-700 px-4 py-3 text-slate-300 focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-colors placeholder:text-slate-600" placeholder="vorstand@institution.de">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">LinkedIn-URL</label>
+                            <input type="url" required class="w-full bg-slate-900 border border-slate-700 px-4 py-3 text-slate-300 focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-colors placeholder:text-slate-600" placeholder="https://linkedin.com/in/...">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Absicht / Ziel</label>
+                            <select class="w-full bg-slate-900 border border-slate-700 px-4 py-3 text-slate-300 focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-colors appearance-none">
+                                <option value="partnership">Strategische Partnerschaft / Joint Venture</option>
+                                <option value="asset_acquisition">Erwerb von physischen Vermögenswerten</option>
+                                <option value="sandbox">Regulatorische / IFSCA-Anfrage</option>
+                                <option value="funding">Institutionelle Finanzierung</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full mt-4 bg-white text-slate-950 font-bold px-4 py-4 hover:bg-slate-200 transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="lock" class="w-4 h-4"></i>
+                            Verschlüsselten Zugang anfordern
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Regulatory Disclaimer -->
+    <footer class="bg-[#01030a] py-12 border-t border-slate-800 text-slate-500 text-xs leading-relaxed font-mono relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="p-6 border border-slate-800 bg-slate-900/30 mb-8 rounded-sm">
+                <strong class="text-slate-400 block mb-2 font-sans text-sm">Hinweis zur Regulatory Sandbox:</strong>
+                Kernax Asset Architecture durchläuft derzeit die vorläufigen Antragsphasen der IFSCA FinTech Regulatory Sandbox in der GIFT City, Indien. Das Kernax HDG-Protokoll und die Green-Ledger AI sind vorgeschlagene konzeptionelle Architekturen. Wir sind derzeit nicht live und werben nicht aktiv um öffentliche Investitionen. Alle operativen Einsätze hängen streng von der Sicherung der endgültigen behördlichen Genehmigungen und der Limited Use Authorisation (LUA) der IFSCA ab.
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 border border-slate-500 flex items-center justify-center rotate-45">
+                        <div class="w-1 h-1 bg-slate-500"></div>
+                    </div>
+                    <span>&copy; 2026 Kernax Asset Architecture. Alle Rechte vorbehalten.</span>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-slate-300 transition-colors">DSGVO-Datenschutzerklärung</a>
+                    <a href="#" class="hover:text-slate-300 transition-colors">Impressum</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
